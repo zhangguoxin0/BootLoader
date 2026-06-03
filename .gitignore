@@ -1,0 +1,8 @@
+MDK-ARM/.vscode
+MDK-ARM/BootLoader_HAL/*
+!MDK-ARM/BootLoader_HAL/*.hex
+!MDK-ARM/BootLoader_HAL/*.bin
+MDK-ARM/DebugConfig
+MDK-ARM/RTE
+MDK-ARM/BootLoader_HAL.uvguix*
+MDK-ARM/BootLoader_HAL.uvoptx
