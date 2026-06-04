@@ -146,13 +146,13 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
         // 1.解锁Flash
         HAL_FLASH_Unlock();
 
-        /* Flash擦除：判断当前写入的地址是否为新的一页 => 需要擦除 */
+        // 2.Flash擦除
         flash_erase();
 
-        /* Flash写入：使用16位写入 */
+        // 3.Flash写入：使用16位写入
         flash_write_halfword();
 
-        // 3.重新加锁
+        // 4.重新加锁
         HAL_FLASH_Lock();
 
         // 使用结束后清空缓冲区，准备接收下一次数据
@@ -185,4 +185,46 @@ void BootLoader_Init(void)
 void BootLoader_GetRecLen(uint16_t *rec_len)
 {
     *rec_len = usart_rec_fulllen;
+}
+
+/**
+ * @brief 跳转到A程序
+ *
+ */
+void BootLoader_jump_to_App(void)
+{
+    typedef void (*pFunc)(void);
+    // 1.校验
+    uint32_t app_stack_ptr = *(volatile uint32_t *)(APP_START_ADDR);        // 栈顶地址
+    uint32_t app_reser_handle = *(volatile uint32_t *)(APP_START_ADDR + 4); // 复位中断地址
+    // 校验栈顶地址的值
+    if((app_stack_ptr & 0xFFFF0000) != STACK_ADDR)
+    {
+        // 栈顶地址不合法
+        return;
+    }
+    // 校验复位中断地址
+    if(app_reser_handle < APP_START_ADDR || app_reser_handle > APP_END_ADDR)
+    {
+        // 复位中断地址不合法
+        return;
+    }
+    // 2.注销BootLoader程序
+    // 2.1.关闭中断
+    __disable_irq();
+
+    NVIC_DisableIRQ(EXTI9_5_IRQn);
+    NVIC_DisableIRQ(USART1_IRQn);
+    SysTick->CTRL = 0;
+    SysTick->LOAD = 0;
+    SysTick->VAL = 0;
+    HAL_DeInit();
+
+    // 2.2.设置堆栈指针
+    __set_MSP(app_stack_ptr);
+    // 2.3.重定向中断向量表
+    SCB->VTOR = APP_START_ADDR;
+    // 3..跳转到A程序复位中断
+    pFunc jump_to_APP = (pFunc)app_reser_handle;
+    jump_to_APP();
 }
