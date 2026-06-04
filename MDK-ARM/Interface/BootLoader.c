@@ -3,18 +3,21 @@
 
 static uint8_t usart_rec_buff[BOOTLOADER_USART_REC_BUFF_LEN] = {0}; // 接收程序缓冲区
 static uint16_t usart_rec_len = 0;                                  // 一次接收数据长度
-static uint16_t usart_rec_fulllen = 0;                              // 接收数据总长度
+uint16_t usart_rec_fulllen = 0;                              // 接收数据总长度
 
 static uint32_t flash_write_offest = 0; // 记录当前写入程序的偏移量
 
 static uint8_t last_byte = 0;      // 一次接收的末尾字节
 static uint8_t last_byte_flag = 0; // 是否有末尾字节的存在
 
+uint32_t last_rec_time;  // 记录当前一次接收数据的时间
+
 /**
  * @brief Flash擦除：判断当前写入的地址是否为新的一页 => 需要擦除
  *
  */
-static void flash_erase(void)
+static void
+flash_erase(void)
 {
     // 1.遍历需要写入的地址，长度为当前接收数据长度，如果全为0xFF则说明已经擦除过了
     uint8_t is_erase = 0;   // 是否需要擦除
@@ -136,13 +139,16 @@ static void flash_write_halfword(void)
  */
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
+    // 接收到数据 记录当前的STM32系统时间 单位ms
+    last_rec_time = HAL_GetTick();
+
     if (huart->Instance == USART1)
     {
         // 保存实际接收到的数据长度
         usart_rec_len = Size;
         usart_rec_fulllen += usart_rec_len;
 
-        // TODO:将接收到的数据写入到Flash中
+        // 将接收到的数据写入到Flash中
         // 1.解锁Flash
         HAL_FLASH_Unlock();
 
@@ -168,7 +174,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
  * @brief 串口接收 => 准备接收A程序
  *
  */
-void BootLoader_Init(void)
+void BootLoader_receive_app(void)
 {
     // 清空初始化串口之前的所有问题
     __HAL_UART_CLEAR_OREFLAG(&huart1);
@@ -190,24 +196,27 @@ void BootLoader_GetRecLen(uint16_t *rec_len)
 /**
  * @brief 跳转到A程序
  *
+ * @return uint8_t 0：跳转成功 1：跳转失败
  */
-void BootLoader_jump_to_App(void)
+uint8_t BootLoader_jump_to_App(void)
 {
     typedef void (*pFunc)(void);
     // 1.校验
     uint32_t app_stack_ptr = *(volatile uint32_t *)(APP_START_ADDR);        // 栈顶地址
     uint32_t app_reser_handle = *(volatile uint32_t *)(APP_START_ADDR + 4); // 复位中断地址
     // 校验栈顶地址的值
-    if((app_stack_ptr & 0xFFFF0000) != STACK_ADDR)
+    if ((app_stack_ptr & 0xFFFF0000) != STACK_ADDR)
     {
         // 栈顶地址不合法
-        return;
+        printf("statck addr error\r\n");
+        return 1;
     }
     // 校验复位中断地址
-    if(app_reser_handle < APP_START_ADDR || app_reser_handle > APP_END_ADDR)
+    if (app_reser_handle < APP_START_ADDR || app_reser_handle > APP_END_ADDR)
     {
         // 复位中断地址不合法
-        return;
+        printf("reset handle error\r\n");
+        return 1;
     }
     // 2.注销BootLoader程序
     // 2.1.关闭中断
@@ -227,4 +236,27 @@ void BootLoader_jump_to_App(void)
     // 3..跳转到A程序复位中断
     pFunc jump_to_APP = (pFunc)app_reser_handle;
     jump_to_APP();
+
+    return 0;
+}
+
+/**
+ * @brief 外部可调用，提前擦除Flash空间
+ *
+ */
+void BootLoader_erase_flash(uint32_t page_addr, uint16_t pages)
+{
+    // 解锁Flash
+    HAL_FLASH_Unlock();
+
+    FLASH_EraseInitTypeDef erase_init;
+    erase_init.TypeErase = FLASH_TYPEERASE_PAGES; // 按页擦除
+    erase_init.Banks = FLASH_BANK_1;              // 擦除bank1的页
+    erase_init.PageAddress = page_addr;           // 一般为当前页起始地址
+    erase_init.NbPages = pages;                   // 擦除几页
+    uint32_t erase_error = 0;
+    HAL_FLASHEx_Erase(&erase_init, &erase_error);
+
+    // 加锁Flash
+    HAL_FLASH_Lock();
 }

@@ -23,7 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "BootLoader.h"
+#include "App.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -90,7 +90,7 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  BootLoader_Init();
+  App_Init();
 
   /* USER CODE END 2 */
 
@@ -98,11 +98,12 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    HAL_Delay(3000);
-    BootLoader_GetRecLen(&rec_full_len);
-    printf("buff:%d", rec_full_len);
-    HAL_Delay(2000);
-    BootLoader_jump_to_App();
+    App_Work();
+    // HAL_Delay(3000);
+    // BootLoader_GetRecLen(&rec_full_len);
+    // printf("buff:%d", rec_full_len);
+    // HAL_Delay(2000);
+    // BootLoader_jump_to_App();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

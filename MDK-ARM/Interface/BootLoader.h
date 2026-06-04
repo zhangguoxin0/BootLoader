@@ -9,8 +9,9 @@
 #define APP_END_ADDR 0x08007FFF   // A区终止位置
 #define STACK_ADDR 0x20000000     // 栈顶地址
 
-void BootLoader_Init(void);
+void BootLoader_receive_app(void);
 void BootLoader_GetRecLen(uint16_t *rec_len);
-void BootLoader_jump_to_App(void);
+uint8_t BootLoader_jump_to_App(void);
+void BootLoader_erase_flash(uint32_t page_addr, uint16_t pages);
 
 #endif /* __BOOTLOADER_H__ */
