@@ -27,6 +27,7 @@ uint8_t W24C02_ReadByte(uint8_t byte_addr)
 void W24C02_WriteByte(uint8_t byte_addr, uint8_t data)
 {
     HAL_I2C_Mem_Write(&hi2c2, W24C02_ADDR_W, byte_addr, I2C_MEMADD_SIZE_8BIT, &data, 1, 1000);
+    HAL_Delay(5);
 }
 
 /**
