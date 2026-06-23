@@ -3,7 +3,7 @@
 
 static uint8_t usart_rec_buff[BOOTLOADER_USART_REC_BUFF_LEN] = {0}; // 接收程序缓冲区
 static uint16_t usart_rec_len = 0;                                  // 一次接收数据长度
-uint16_t usart_rec_fulllen = 0;                                     // 接收数据总长度
+uint16_t usart_rec_fulllen = 0;                              // 接收数据总长度
 
 static uint32_t flash_write_offest = 0; // 记录当前写入程序的偏移量
 
@@ -180,16 +180,6 @@ void BootLoader_receive_app(void)
     __HAL_UART_CLEAR_IDLEFLAG(&huart1);
     // 带中断的串口接收程序
     HAL_UARTEx_ReceiveToIdle_IT(&huart1, usart_rec_buff, BOOTLOADER_USART_REC_BUFF_LEN);
-}
-
-/**
- * @brief 获取接收到的字节长度
- *
- * @param rec_len
- */
-void BootLoader_GetRecLen(uint16_t *rec_len)
-{
-    *rec_len = usart_rec_fulllen;
 }
 
 /**
