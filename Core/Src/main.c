@@ -18,12 +18,14 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "i2c.h"
 #include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "App.h"
+#include "w24c02.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -88,9 +90,13 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART1_UART_Init();
+  MX_I2C2_Init();
   /* USER CODE BEGIN 2 */
 
-  App_Init();
+  W24C02_WriteByte(0x00, 'c');
+  HAL_Delay(5);
+  uint8_t byte = W24C02_ReadByte(0x00);
+  printf("%c", byte);
 
   /* USER CODE END 2 */
 
@@ -98,12 +104,6 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    App_Work();
-    // HAL_Delay(3000);
-    // BootLoader_GetRecLen(&rec_full_len);
-    // printf("buff:%d", rec_full_len);
-    // HAL_Delay(2000);
-    // BootLoader_jump_to_App();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

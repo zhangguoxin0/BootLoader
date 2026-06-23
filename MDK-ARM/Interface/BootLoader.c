@@ -3,21 +3,20 @@
 
 static uint8_t usart_rec_buff[BOOTLOADER_USART_REC_BUFF_LEN] = {0}; // 接收程序缓冲区
 static uint16_t usart_rec_len = 0;                                  // 一次接收数据长度
-uint16_t usart_rec_fulllen = 0;                              // 接收数据总长度
+uint16_t usart_rec_fulllen = 0;                                     // 接收数据总长度
 
 static uint32_t flash_write_offest = 0; // 记录当前写入程序的偏移量
 
 static uint8_t last_byte = 0;      // 一次接收的末尾字节
 static uint8_t last_byte_flag = 0; // 是否有末尾字节的存在
 
-uint32_t last_rec_time;  // 记录当前一次接收数据的时间
+uint32_t last_rec_time; // 记录当前一次接收数据的时间
 
 /**
  * @brief Flash擦除：判断当前写入的地址是否为新的一页 => 需要擦除
  *
  */
-static void
-flash_erase(void)
+static void flash_erase(void)
 {
     // 1.遍历需要写入的地址，长度为当前接收数据长度，如果全为0xFF则说明已经擦除过了
     uint8_t is_erase = 0;   // 是否需要擦除
