@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "i2c.h"
+#include "spi.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -26,6 +27,7 @@
 /* USER CODE BEGIN Includes */
 #include "App.h"
 #include "w24c02.h"
+#include "w25q32.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -91,14 +93,19 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   MX_I2C2_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 
-  // 1.检查更新状态
-  APP_bootloader_check_update();
-  // 2.根据状态更新
-  APP_bootloader_update();
-  // 3.跳转到APP程序
-  APP_bootloader_jump_app();
+  uint8_t mf_id = 0;
+  uint16_t device_id = 0;
+  W25Q32_ReadID(&mf_id, &device_id);
+  printf("mf_id:%2x device_id:%4x\n", mf_id, device_id);
+
+  W25Q32_EraseSector(0, 0);
+  W25Q32_PageWrite(0, 0, 0,0x08, "12345", 5);
+  uint8_t data[20] = {0};
+  W25Q32_Read(0, 0, 0, 0x08, data, 5);
+  printf("data:%s\n", data);
 
   /* USER CODE END 2 */
 
