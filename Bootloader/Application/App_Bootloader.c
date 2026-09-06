@@ -81,3 +81,11 @@ void APP_bootloader_jump_app(void)
         BootLoader_jump_to_App(APP_START_ADDR);
     }
 }
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+    if(GPIO_Pin == KEY1_Pin)
+    {
+        app_boot_update_status = BOOT_RESET;
+    }
+}

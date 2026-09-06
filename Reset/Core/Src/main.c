@@ -1,33 +1,28 @@
 /* USER CODE BEGIN Header */
 /**
- ******************************************************************************
- * @file           : main.c
- * @brief          : Main program body
- ******************************************************************************
- * @attention
- *
- * Copyright (c) 2026 STMicroelectronics.
- * All rights reserved.
- *
- * This software is licensed under terms that can be found in the LICENSE file
- * in the root directory of this software component.
- * If no LICENSE file comes with this software, it is provided AS-IS.
- *
- ******************************************************************************
- */
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2026 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If a LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "i2c.h"
-#include "spi.h"
-#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "App_Bootloader.h"
-#include "W24C02.h"
-#include "W25Q32.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -91,22 +86,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_USART1_UART_Init();
-  MX_I2C2_Init();
-  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
-
-  // 1.�??查更新状�??
-  APP_bootloader_check_update();
-  
-  // 2.判断是否进入默认程序：恢复出厂设�??
-  APP_bootloader_check_default();
-
-  // 3.根据状�?�标志进行更�??
-  APP_bootloader_update();
-
-  // 3.跳转到App
-  APP_bootloader_jump_app();
 
   /* USER CODE END 2 */
 
@@ -181,9 +161,9 @@ void Error_Handler(void)
 
 #ifdef  USE_FULL_ASSERT
 /**
-  * @brief  Reports the name of the source file and the source line number
+  * @brief  Reports the name of the file and the source line number
   *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
+  * @param  file: pointer to the file name
   * @param  line: assert_param error line source number
   * @retval None
   */
