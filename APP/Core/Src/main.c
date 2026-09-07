@@ -66,7 +66,10 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+  // 重定向中断向量表
+  SCB->VTOR = RESET_START_ADDR;
+  // 打开中断
+  __enable_irq();
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/

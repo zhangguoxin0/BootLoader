@@ -70,7 +70,9 @@ void APP_bootloader_jump_app(void)
 {
     if (app_boot_update_status == BOOT_RESET)
     {
-        // 需要恢复出厂设置
+        // 需要恢复出厂设置，跳转前清除标志位
+        uint8_t data[3] = {BOOT_NO_UPDATE, (uint8_t)(CHECK_KEY >> 8), (uint8_t)(CHECK_KEY & 0xFF)};
+        W24C02_WriteStr(CHECK_UPDATE_ADDR, data, 3);
         // 跳转到出厂设置的默认程序 地址0x08004000
         BootLoader_jump_to_App(RESET_START_ADDR);
     }
