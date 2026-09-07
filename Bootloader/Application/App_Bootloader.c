@@ -1,6 +1,71 @@
 #include "App_Bootloader.h"
 
 static uint8_t app_boot_update_status = BOOT_NO_UPDATE; // 是否需要更新
+static uint8_t meta_app_buff[10] = {0};                 // 元数据信息（4字节程序起始地址 + 4字节程序大小）
+static uint8_t app_head_info[10] = {0};                 // A程序头信息（4字节栈顶地址值 + 4字节复位中断）
+
+/**
+ * @brief 校验元数据信息是否合法
+ *
+ * @return uint8_t 校验是否通过
+ * @retval 0 校验通过
+ * @retval 1 校验未通过
+ */
+static uint8_t check_mete_data(void)
+{
+    // 读取元数据信息（前4个字节为程序的起始地址，后4个字节为程序大小）
+    W25Q32_Read(META_APP_ADDR, meta_app_buff, 8);
+    uint32_t app_start_addr = meta_app_buff[0] | meta_app_buff[1] << 8 | meta_app_buff[2] << 16 | meta_app_buff[3] << 24;
+    uint32_t app_size = meta_app_buff[5] | meta_app_buff[6] << 8 | meta_app_buff[7] << 16 | meta_app_buff[8] << 24;
+    // 校验A程序在Flash中的存放位置是否合法
+    if (app_start_addr < APP_START_ADDR)
+    {
+        printf("app start_addr error\n");
+        return 1;
+    }
+    // 校验A程序大小是否合法
+    if (app_size < APP_SIZE_MIN || app_size > APP_SIZE_MAX)
+    {
+        printf("app size errorn\n");
+        return 1;
+    }
+    return 0;
+}
+
+/**
+ * @brief 校验A程序头信息是否合法
+ *
+ * @return uint8_t 校验是否通过
+ * @retval 0 校验通过
+ * @retval 1 校验未通过
+ */
+static uint8_t check_app_info(void)
+{
+    // 读取A程序头信息
+    W25Q32_Read(app_start_addr, app_head_info, 8);
+    uint32_t app_stack_ptr = app_head_info[0] | app_head_info[1] << 8 | app_head_info[2] << 16 | app_head_info[3] << 24;
+    uint32_t app_reser_handle = app_head_info[5] | app_head_info[6] << 8 | app_head_info[7] << 16 | app_head_info[8] << 24;
+
+    // 校验栈顶地址的值是否合法
+    if ((app_stack_ptr & 0xFFFF0000) != STACK_ADDR)
+    {
+        // 栈顶地址不合法
+        printf("statck addr error\r\n");
+        return 1;
+    }
+    // 校验复位中断地址是否合法
+    if (app_reser_handle < APP_START_ADDR || app_reser_handle > APP_END_ADDR)
+    {
+        // 复位中断地址不合法
+        printf("reset handle error\r\n");
+        return 1;
+    }
+    return 0;
+}
+
+static void write_app_from_flash(void)
+{
+}
 
 /**
  * @brief 判断是否需要更新
@@ -86,7 +151,7 @@ void APP_bootloader_jump_app(void)
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-    if(GPIO_Pin == KEY1_Pin)
+    if (GPIO_Pin == KEY1_Pin)
     {
         app_boot_update_status = BOOT_RESET;
     }
