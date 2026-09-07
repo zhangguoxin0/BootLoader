@@ -1,0 +1,47 @@
+# MDK-ARM 编译输出
+**/MDK-ARM/**/*.o
+**/MDK-ARM/**/*.d
+**/MDK-ARM/**/*.crf
+**/MDK-ARM/**/*.axf
+**/MDK-ARM/**/*.hex
+**/MDK-ARM/**/*.bin
+**/MDK-ARM/**/*.htm
+**/MDK-ARM/**/*.map
+**/MDK-ARM/**/*.lst
+**/MDK-ARM/**/*.lnp
+**/MDK-ARM/**/*.dep
+**/MDK-ARM/**/*.build_log.htm
+**/MDK-ARM/**/*.sct
+**/MDK-ARM/**/*.tra
+**/MDK-ARM/**/*.fed
+**/MDK-ARM/**/*.s
+!**/MDK-ARM/**/startup_*.s
+
+# MDK-ARM 用户配置文件（包含本地路径）
+**/MDK-ARM/*.uvguix.*
+**/MDK-ARM/*.uvoptx
+
+# DebugConfig
+**/DebugConfig/
+
+# RTE 自动生成文件
+**/RTE/
+
+# STM32CubeMX 项目文件
+**/.mxproject
+
+# 编译输出目录
+**/Listings/
+**/Objects/
+**/Output/
+
+# IDE 临时文件
+*.bak
+*.dep
+*.log
+*.tmp
+
+# Windows 系统文件
+Thumbs.db
+Desktop.ini
+.DS_Store
