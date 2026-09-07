@@ -6,6 +6,7 @@
 #include "gpio.h"
 #include "W24C02.h"
 #include "W25Q32.h"
+#include "Flash.h"
 
 // 是否需要更新状态
 #define CHECK_UPDATE_ADDR 0x10 // 存储更新状态的位置

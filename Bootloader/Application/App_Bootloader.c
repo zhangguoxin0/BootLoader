@@ -1,8 +1,14 @@
 #include "App_Bootloader.h"
 
 static uint8_t app_boot_update_status = BOOT_NO_UPDATE; // 是否需要更新
-static uint8_t meta_app_buff[10] = {0};                 // 元数据信息（4字节程序起始地址 + 4字节程序大小）
-static uint8_t app_head_info[10] = {0};                 // A程序头信息（4字节栈顶地址值 + 4字节复位中断）
+
+static uint8_t meta_app_buff[10] = {0}; // 元数据信息（4字节程序起始地址 + 4字节程序大小）
+static uint32_t app_start_addr;         // A程序在W25Q32中的起始位置
+static uint32_t app_size;               // W25Q32中A程序的大小
+
+static uint8_t app_head_info[10] = {0}; // A程序头信息（4字节栈顶地址值 + 4字节复位中断）
+
+static uint8_t flash_data_buff[FLASH_PAGE_SIZE + 1];
 
 /**
  * @brief 校验元数据信息是否合法
@@ -15,8 +21,8 @@ static uint8_t check_mete_data(void)
 {
     // 读取元数据信息（前4个字节为程序的起始地址，后4个字节为程序大小）
     W25Q32_Read(META_APP_ADDR, meta_app_buff, 8);
-    uint32_t app_start_addr = meta_app_buff[0] | meta_app_buff[1] << 8 | meta_app_buff[2] << 16 | meta_app_buff[3] << 24;
-    uint32_t app_size = meta_app_buff[5] | meta_app_buff[6] << 8 | meta_app_buff[7] << 16 | meta_app_buff[8] << 24;
+    app_start_addr = meta_app_buff[0] | meta_app_buff[1] << 8 | meta_app_buff[2] << 16 | meta_app_buff[3] << 24;
+    app_size = meta_app_buff[5] | meta_app_buff[6] << 8 | meta_app_buff[7] << 16 | meta_app_buff[8] << 24;
     // 校验A程序在Flash中的存放位置是否合法
     if (app_start_addr < APP_START_ADDR)
     {
@@ -63,8 +69,68 @@ static uint8_t check_app_info(void)
     return 0;
 }
 
-static void write_app_from_flash(void)
+/**
+ * @brief 从W25Q32将程序写入到片上Flash的A程序区域
+ *
+ * @return uint8_t
+ */
+static uint8_t write_app_to_flash(void)
 {
+    uint8_t ret;
+    // 剩余还没有写入的A程序大小
+    uint32_t app_size_left;
+    // 已经写入的A程序大小
+    uint32_t writed_data_size;
+
+    // 校验
+    ret = check_mete_data();
+    if (ret == 1)
+    {
+        return 1;
+    }
+    ret = check_app_info();
+    if (ret == 1)
+    {
+        return 1;
+    }
+
+    // 擦除A区内容
+    BootLoader_erase_flash();
+
+    // 写入程序
+    app_size_left = app_size;
+    while (app_size_left > FLASH_PAGE_SIZE)
+    {
+        writed_data_size = app_size - app_size_left;
+        // 从W25Q32读出1页内容
+        Flash_Read(app_start_addr + writed_data_size, flash_data_buff, FLASH_PAGE_SIZE);
+        app_size_left -= FLASH_PAGE_SIZE;
+        // 写入1页内容到Flash
+        Flash_Unlock();
+        ret = Flash_Write(APP_START_ADDR + writed_data_size, flash_data_buff, FLASH_PAGE_SIZE);
+        Flash_Lock();
+        if (ret != 0)
+        {
+            return ret;
+        }
+    }
+    // 写入最后一页
+    if (app_size_left > 0)
+    {
+        writed_data_size = app_size - app_size_left;
+        // 读取剩余内容
+        Flash_Read(app_start_addr + writed_data_size, flash_data_buff, app_size_left);
+        // 写入剩余内容到Flash
+        Flash_Unlock();
+        ret = Flash_Write(APP_START_ADDR + writed_data_size, flash_data_buff, app_size_left);
+        Flash_Lock();
+        if (ret != 0)
+        {
+            return ret;
+        }
+    }
+
+    return 0;
 }
 
 /**
@@ -112,8 +178,8 @@ void APP_bootloader_update(void)
 {
     if (app_boot_update_status == BOOT_UPDATE)
     {
-        // 需要执行更新操作，将W25Q32中的程序写入到flash中
-        // TODO:将W25Q32的程序写入到flash中
+        // 需要执行更新操作，将W25Q32中的程序写入到Flash中
+        write_app_to_flash();
         printf("update!\n");
     }
     else if (app_boot_update_status == BOOT_NO_UPDATE)
