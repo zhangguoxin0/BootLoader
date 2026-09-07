@@ -22,7 +22,7 @@ static uint8_t check_mete_data(void)
     // 读取元数据信息（前4个字节为程序的起始地址，后4个字节为程序大小）
     W25Q32_Read(META_APP_ADDR, meta_app_buff, 8);
     app_start_addr = meta_app_buff[0] | meta_app_buff[1] << 8 | meta_app_buff[2] << 16 | meta_app_buff[3] << 24;
-    app_size = meta_app_buff[5] | meta_app_buff[6] << 8 | meta_app_buff[7] << 16 | meta_app_buff[8] << 24;
+    app_size = meta_app_buff[4] | meta_app_buff[5] << 8 | meta_app_buff[6] << 16 | meta_app_buff[7] << 24;
     // 校验A程序在Flash中的存放位置是否合法
     if (app_start_addr < APP_START_ADDR)
     {
@@ -50,7 +50,7 @@ static uint8_t check_app_info(void)
     // 读取A程序头信息
     W25Q32_Read(app_start_addr, app_head_info, 8);
     uint32_t app_stack_ptr = app_head_info[0] | app_head_info[1] << 8 | app_head_info[2] << 16 | app_head_info[3] << 24;
-    uint32_t app_reser_handle = app_head_info[5] | app_head_info[6] << 8 | app_head_info[7] << 16 | app_head_info[8] << 24;
+    uint32_t app_reser_handle = app_head_info[4] | app_head_info[5] << 8 | app_head_info[6] << 16 | app_head_info[7] << 24;
 
     // 校验栈顶地址的值是否合法
     if ((app_stack_ptr & 0xFFFF0000) != STACK_ADDR)
@@ -103,7 +103,7 @@ static uint8_t write_app_to_flash(void)
     {
         writed_data_size = app_size - app_size_left;
         // 从W25Q32读出1页内容
-        Flash_Read(app_start_addr + writed_data_size, flash_data_buff, FLASH_PAGE_SIZE);
+        W25Q32_Read(app_start_addr + writed_data_size, flash_data_buff, FLASH_PAGE_SIZE);
         app_size_left -= FLASH_PAGE_SIZE;
         // 写入1页内容到Flash
         Flash_Unlock();
@@ -119,10 +119,16 @@ static uint8_t write_app_to_flash(void)
     {
         writed_data_size = app_size - app_size_left;
         // 读取剩余内容
-        Flash_Read(app_start_addr + writed_data_size, flash_data_buff, app_size_left);
-        // 写入剩余内容到Flash
+        W25Q32_Read(app_start_addr + writed_data_size, flash_data_buff, app_size_left);
+        // 写入剩余内容到Flash（需要半字对齐）
         Flash_Unlock();
-        ret = Flash_Write(APP_START_ADDR + writed_data_size, flash_data_buff, app_size_left);
+        uint32_t write_len = app_size_left;
+        if (write_len % 2 != 0)
+        {
+            flash_data_buff[write_len] = 0xFF; // 补0xFF对齐到偶数字节
+            write_len++;
+        }
+        ret = Flash_Write(APP_START_ADDR + writed_data_size, flash_data_buff, write_len);
         Flash_Lock();
         if (ret != 0)
         {
