@@ -23,7 +23,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "Bootloader.h"
+#include "LED.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -67,7 +68,7 @@ int main(void)
 
   /* USER CODE BEGIN 1 */
   // 重定向中断向量表
-  SCB->VTOR = RESET_START_ADDR;
+  SCB->VTOR = APP_START_ADDR;
   // 打开中断
   __enable_irq();
   /* USER CODE END 1 */
@@ -93,12 +94,24 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
+  printf("Enter the App program\r\n");
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    // LED流水灯
+    LED3_OFF();
+    LED1_ON();
+    HAL_Delay(200);
+    LED1_OFF();
+    LED2_ON();
+    HAL_Delay(200);
+    LED2_OFF();
+    LED3_ON();
+    HAL_Delay(200);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

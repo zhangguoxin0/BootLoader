@@ -1,0 +1,83 @@
+<mxfile host="Electron">
+  <diagram name="第 1 页" id="_lNFFMjJeIVkKc6POyew">
+    <mxGraphModel dx="839" dy="562" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2qYqI1TRbp4bl780XyiZ-7" edge="1" parent="1" source="2qYqI1TRbp4bl780XyiZ-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="2qYqI1TRbp4bl780XyiZ-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2qYqI1TRbp4bl780XyiZ-12" connectable="0" parent="2qYqI1TRbp4bl780XyiZ-7" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;fontColor=default;" value="&lt;span&gt;设置ID/DLC/DATA&lt;/span&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.0467" y="-1" as="geometry">
+            <mxPoint x="-3" y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2qYqI1TRbp4bl780XyiZ-13" connectable="0" parent="2qYqI1TRbp4bl780XyiZ-7" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" value="放入优先级最高的邮箱" vertex="1">
+          <mxGeometry relative="1" x="-0.0807" y="-1" as="geometry">
+            <mxPoint x="5" y="9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2qYqI1TRbp4bl780XyiZ-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" value="选择空置邮箱" vertex="1">
+          <mxGeometry height="40" width="120" x="40" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="2qYqI1TRbp4bl780XyiZ-8" edge="1" parent="1" source="2qYqI1TRbp4bl780XyiZ-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="2qYqI1TRbp4bl780XyiZ-3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="590" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2qYqI1TRbp4bl780XyiZ-14" connectable="0" parent="2qYqI1TRbp4bl780XyiZ-8" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" value="请求数据发送" vertex="1">
+          <mxGeometry relative="1" x="-0.0353" y="1" as="geometry">
+            <mxPoint x="2" y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2qYqI1TRbp4bl780XyiZ-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" value="邮箱退出空状态" vertex="1">
+          <mxGeometry height="40" width="120" x="320" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="2qYqI1TRbp4bl780XyiZ-9" edge="1" parent="1" source="2qYqI1TRbp4bl780XyiZ-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="2qYqI1TRbp4bl780XyiZ-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2qYqI1TRbp4bl780XyiZ-15" connectable="0" parent="2qYqI1TRbp4bl780XyiZ-9" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" value="等待成为最高优先级的邮箱" vertex="1">
+          <mxGeometry relative="1" x="0.006" y="-1" as="geometry">
+            <mxPoint x="-69" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2qYqI1TRbp4bl780XyiZ-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" value="挂号状态" vertex="1">
+          <mxGeometry height="40" width="120" x="600" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="2qYqI1TRbp4bl780XyiZ-10" edge="1" parent="1" source="2qYqI1TRbp4bl780XyiZ-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="2qYqI1TRbp4bl780XyiZ-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2qYqI1TRbp4bl780XyiZ-16" connectable="0" parent="2qYqI1TRbp4bl780XyiZ-10" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" value="等待总线进入空闲状态" vertex="1">
+          <mxGeometry relative="1" x="0.0473" as="geometry">
+            <mxPoint x="3" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2qYqI1TRbp4bl780XyiZ-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" value="预定发送状态" vertex="1">
+          <mxGeometry height="40" width="120" x="600" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="2qYqI1TRbp4bl780XyiZ-11" edge="1" parent="1" source="2qYqI1TRbp4bl780XyiZ-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="2qYqI1TRbp4bl780XyiZ-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2qYqI1TRbp4bl780XyiZ-17" connectable="0" parent="2qYqI1TRbp4bl780XyiZ-11" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" value="报文被成功发送" vertex="1">
+          <mxGeometry relative="1" x="-0.098" as="geometry">
+            <mxPoint x="-6" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2qYqI1TRbp4bl780XyiZ-18" connectable="0" parent="2qYqI1TRbp4bl780XyiZ-11" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" value="CAN_TSR的RQCP和TXOK置1" vertex="1">
+          <mxGeometry relative="1" x="0.002" as="geometry">
+            <mxPoint y="10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2qYqI1TRbp4bl780XyiZ-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" value="发送状态" vertex="1">
+          <mxGeometry height="40" width="120" x="320" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="2qYqI1TRbp4bl780XyiZ-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" value="空置状态" vertex="1">
+          <mxGeometry height="40" width="120" x="40" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="2qYqI1TRbp4bl780XyiZ-19" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="发送优先级由邮箱中报文的标识符决定。标识符数值越低优先级有越高的优先级。如果标识符相同，邮箱小的先被发送。" vertex="1">
+          <mxGeometry height="30" width="680" x="40" y="330" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

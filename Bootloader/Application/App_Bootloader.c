@@ -4,8 +4,7 @@ static uint8_t app_boot_update_status = BOOT_NO_UPDATE; // 是否需要更新
 
 static uint8_t meta_app_buff[10] = {0}; // 元数据信息（4字节程序起始地址 + 4字节程序大小）
 static uint32_t app_start_addr;         // A程序在W25Q32中的起始位置
-static uint32_t app_size;               // W25Q32中A程序的大小
-
+static uint32_t app_size;               // A程序在W25Q32中的大小
 static uint8_t app_head_info[10] = {0}; // A程序头信息（4字节栈顶地址值 + 4字节复位中断）
 
 static uint8_t flash_data_buff[FLASH_PAGE_SIZE + 1];
@@ -146,7 +145,7 @@ static uint8_t write_app_to_flash(void)
 void APP_bootloader_check_update(void)
 {
     printf("bootloader start\n");
-    printf("check update\n");
+    printf("check update...\n");
     // 读取更新相关数据
     uint8_t data[3];
     W24C02_ReadStr(CHECK_UPDATE_ADDR, data, 3);

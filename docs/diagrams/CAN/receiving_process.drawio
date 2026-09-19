@@ -1,0 +1,86 @@
+<mxfile host="Electron">
+  <diagram name="第 1 页" id="5rChVy0Ue8lLlIsg2U1W">
+    <mxGraphModel dx="839" dy="562" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="jFkETJka4NKFulBFKTmy-1" edge="1" parent="1" source="jFkETJka4NKFulBFKTmy-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="jFkETJka4NKFulBFKTmy-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jFkETJka4NKFulBFKTmy-2" connectable="0" parent="jFkETJka4NKFulBFKTmy-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;fontColor=default;" value="收到有效报文" vertex="1">
+          <mxGeometry relative="1" x="0.0467" y="-1" as="geometry">
+            <mxPoint x="-3" y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jFkETJka4NKFulBFKTmy-21" connectable="0" parent="jFkETJka4NKFulBFKTmy-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" value="有效报文数量可以从FMP位得知" vertex="1">
+          <mxGeometry relative="1" x="0.0448" y="-2" as="geometry">
+            <mxPoint x="-4" y="8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jFkETJka4NKFulBFKTmy-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" value="空置FIFO" vertex="1">
+          <mxGeometry height="40" width="120" x="40" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="jFkETJka4NKFulBFKTmy-5" edge="1" parent="1" source="jFkETJka4NKFulBFKTmy-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="jFkETJka4NKFulBFKTmy-10">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="670" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jFkETJka4NKFulBFKTmy-6" connectable="0" parent="jFkETJka4NKFulBFKTmy-5" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" value="收到有效报文" vertex="1">
+          <mxGeometry relative="1" x="-0.0353" y="1" as="geometry">
+            <mxPoint x="2" y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jFkETJka4NKFulBFKTmy-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" value="挂号_1" vertex="1">
+          <mxGeometry height="40" width="120" x="360" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="jFkETJka4NKFulBFKTmy-8" edge="1" parent="1" source="jFkETJka4NKFulBFKTmy-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="jFkETJka4NKFulBFKTmy-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jFkETJka4NKFulBFKTmy-9" connectable="0" parent="jFkETJka4NKFulBFKTmy-8" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" value="收到有效报文" vertex="1">
+          <mxGeometry relative="1" x="0.006" y="-1" as="geometry">
+            <mxPoint x="-39" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jFkETJka4NKFulBFKTmy-10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" value="挂号_2" vertex="1">
+          <mxGeometry height="40" width="120" x="680" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="jFkETJka4NKFulBFKTmy-11" edge="1" parent="1" source="jFkETJka4NKFulBFKTmy-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="jFkETJka4NKFulBFKTmy-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jFkETJka4NKFulBFKTmy-12" connectable="0" parent="jFkETJka4NKFulBFKTmy-11" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" value="收到有效报文" vertex="1">
+          <mxGeometry relative="1" x="0.0473" as="geometry">
+            <mxPoint x="3" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jFkETJka4NKFulBFKTmy-20" connectable="0" parent="jFkETJka4NKFulBFKTmy-11" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" value="FIFO已满" vertex="1">
+          <mxGeometry relative="1" x="-0.0345" y="1" as="geometry">
+            <mxPoint x="-3" y="9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jFkETJka4NKFulBFKTmy-13" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" value="挂号_3" vertex="1">
+          <mxGeometry height="40" width="120" x="680" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="jFkETJka4NKFulBFKTmy-14" edge="1" parent="1" source="jFkETJka4NKFulBFKTmy-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="jFkETJka4NKFulBFKTmy-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jFkETJka4NKFulBFKTmy-15" connectable="0" parent="jFkETJka4NKFulBFKTmy-14" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" value="取决FIFO锁定功能出现报文丢失问题" vertex="1">
+          <mxGeometry relative="1" x="-0.098" as="geometry">
+            <mxPoint x="-6" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jFkETJka4NKFulBFKTmy-17" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" value="溢出状态" vertex="1">
+          <mxGeometry height="40" width="120" x="360" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="jFkETJka4NKFulBFKTmy-18" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" value="空置状态" vertex="1">
+          <mxGeometry height="40" width="120" x="40" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="jFkETJka4NKFulBFKTmy-19" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="有效报文指的是（数据帧直到EOF段的最后一位都没有错误），且通过过滤器组对标识符过滤。" vertex="1">
+          <mxGeometry height="30" width="680" x="120" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="jFkETJka4NKFulBFKTmy-22" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="读取FIFO输出邮箱读出邮箱中的报文" vertex="1">
+          <mxGeometry height="30" width="200" x="320" y="200" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

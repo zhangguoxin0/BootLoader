@@ -1,0 +1,34 @@
+<mxfile host="Electron">
+  <diagram name="第 1 页" id="tepyZqSwfrTdEF95lHOD">
+    <mxGraphModel dx="1007" dy="674" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="A6dTnxeh-B4rTs8vF8Go-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="140" width="200" x="80" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="A6dTnxeh-B4rTs8vF8Go-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="80" width="120" x="140" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="A6dTnxeh-B4rTs8vF8Go-3" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="发送" vertex="1">
+          <mxGeometry height="30" width="60" x="140" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="A6dTnxeh-B4rTs8vF8Go-4" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="接收" vertex="1">
+          <mxGeometry height="30" width="60" x="200" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="A6dTnxeh-B4rTs8vF8Go-5" parent="1" style="shape=waypoint;sketch=0;fillStyle=solid;size=6;pointerEvents=1;points=[];fillColor=none;resizable=0;rotatable=0;perimeter=centerPerimeter;snapToPoint=1;" value="" vertex="1">
+          <mxGeometry height="20" width="20" x="160" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="A6dTnxeh-B4rTs8vF8Go-6" parent="1" style="shape=waypoint;sketch=0;fillStyle=solid;size=6;pointerEvents=1;points=[];fillColor=none;resizable=0;rotatable=0;perimeter=centerPerimeter;snapToPoint=1;" value="" vertex="1">
+          <mxGeometry height="20" width="20" x="220" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="A6dTnxeh-B4rTs8vF8Go-7" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="bxCAN" vertex="1">
+          <mxGeometry height="30" width="60" x="80" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="A6dTnxeh-B4rTs8vF8Go-8" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;正常模式&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="120" x="120" y="90" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

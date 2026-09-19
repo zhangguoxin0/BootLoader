@@ -1,0 +1,87 @@
+<mxfile host="Electron">
+  <diagram name="第 1 页" id="L8r2G0TLmVbPr3Tqnf9e">
+    <mxGraphModel dx="1007" dy="674" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ghVF1TgPSRFgcz4cX6X2-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" value="SYNC_SEF" vertex="1">
+          <mxGeometry height="40" width="80" x="120" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="ghVF1TgPSRFgcz4cX6X2-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" value="时间段1（BS1）" vertex="1">
+          <mxGeometry height="40" width="240" x="200" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="ghVF1TgPSRFgcz4cX6X2-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" value="时间段2（BS2）" vertex="1">
+          <mxGeometry height="40" width="200" x="440" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="ghVF1TgPSRFgcz4cX6X2-4" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="120" y="260" as="sourcePoint" />
+            <mxPoint x="120" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ghVF1TgPSRFgcz4cX6X2-5" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="640" y="260" as="sourcePoint" />
+            <mxPoint x="640" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ghVF1TgPSRFgcz4cX6X2-6" edge="1" parent="1" style="endArrow=classic;startArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="120" y="190" as="sourcePoint" />
+            <mxPoint x="640" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ghVF1TgPSRFgcz4cX6X2-7" connectable="0" parent="ghVF1TgPSRFgcz4cX6X2-6" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" value="正常的位时间" vertex="1">
+          <mxGeometry relative="1" x="0.0034" y="-2" as="geometry">
+            <mxPoint y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ghVF1TgPSRFgcz4cX6X2-8" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" target="ghVF1TgPSRFgcz4cX6X2-2" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="200" y="260" as="sourcePoint" />
+            <mxPoint x="330" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ghVF1TgPSRFgcz4cX6X2-9" edge="1" parent="1" style="endArrow=classic;startArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="120" y="250" as="sourcePoint" />
+            <mxPoint x="200" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ghVF1TgPSRFgcz4cX6X2-13" connectable="0" parent="ghVF1TgPSRFgcz4cX6X2-9" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" value="1t&lt;sub&gt;q&lt;/sub&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.007" y="-1" as="geometry">
+            <mxPoint y="9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ghVF1TgPSRFgcz4cX6X2-10" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" target="ghVF1TgPSRFgcz4cX6X2-3" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="440" y="260" as="sourcePoint" />
+            <mxPoint x="450" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ghVF1TgPSRFgcz4cX6X2-11" edge="1" parent="1" style="endArrow=classic;startArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="200" y="250" as="sourcePoint" />
+            <mxPoint x="440" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ghVF1TgPSRFgcz4cX6X2-14" connectable="0" parent="ghVF1TgPSRFgcz4cX6X2-11" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" value="&lt;span&gt;t&lt;sub&gt;BS1&lt;/sub&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.019" y="-1" as="geometry">
+            <mxPoint x="2" y="9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ghVF1TgPSRFgcz4cX6X2-12" edge="1" parent="1" style="endArrow=classic;startArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="440" y="250" as="sourcePoint" />
+            <mxPoint x="640" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ghVF1TgPSRFgcz4cX6X2-15" connectable="0" parent="ghVF1TgPSRFgcz4cX6X2-12" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" value="t&lt;sub&gt;BS2&lt;/sub&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.0047" as="geometry">
+            <mxPoint y="10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -178,7 +178,7 @@ __enable_irq();
 
 ### 恢复出厂程序流程图
 
-![恢复出厂程序流程图](docs\reset_flow\reset_flow.png)
+![恢复出厂程序流程图](docs\diagrams\reset_flow\reset_flow.png)
 
 ### 安装写入（W25Q32→片上Flash）
 
