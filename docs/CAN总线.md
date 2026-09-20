@@ -182,3 +182,34 @@ $$
 $$
 波特率 = \frac{1}{t_q + t_q \times (TS1[3:0] + 1) + t_q \times(TS2[2:0]+1)}
 $$
+
+# 配置过程
+
+## HAL库配置
+
+![CAN总线HAL库配置](diagrams\CAN\CAN_HAL_config.png)
+
+1. 配置预分频系数
+2. 配置 BS1 BS2 的 tq 数
+3. 开启自动进入睡眠模式和自动唤醒功能
+4. 测试模式设置为环回静默模式
+5. 引脚重映射到 PA8 PA9
+
+## 用户配置
+
+```c
+// 配置过滤器
+CAN_FilterTypeDef filterConfig = {0};
+filterConfig.FilterBank = 0;                      // 过滤器编号(0~13)
+filterConfig.FilterMode = CAN_FILTERMODE_IDMASK;  // 掩码模式
+filterConfig.FilterScale = CAN_FILTERSCALE_32BIT; // 选择使用32位过滤器
+filterConfig.FilterIdHigh = 0x0000;               // ID高16位
+filterConfig.FilterIdLow = 0x0000;                // ID低16位
+filterConfig.FilterMaskIdHigh = 0x0000;           // 掩码高16位：0表示不需要匹配，1表示需要匹配
+filterConfig.FilterMaskIdLow = 0x0000;            // 掩码低16位：0表示不需要匹配，1表示需要匹配
+filterConfig.FilterFIFOAssignment = CAN_RX_FIFO0; // 使用接收队列0
+filterConfig.FilterActivation = ENABLE;           // 使能过滤器
+HAL_CAN_ConfigFilter(&hcan, &filterConfig);
+// 开启CAN
+HAL_CAN_Start(&hcan);
+```
