@@ -13,6 +13,7 @@
                 "d:\\02_STM32\\BootLoader_HAL\\APP\\Driver\\Flash",
                 "d:\\02_STM32\\BootLoader_HAL\\APP\\Driver\\LED",
                 "d:\\02_STM32\\BootLoader_HAL\\APP\\Driver\\CAN",
+                "d:\\02_STM32\\BootLoader_HAL\\APP\\Application",
                 "C:\\Keil_v5\\ARM\\ARMCC\\include",
                 "C:\\Keil_v5\\ARM\\ARMCC\\include\\rw",
                 "d:\\02_STM32\\BootLoader_HAL\\APP\\MDK-ARM",

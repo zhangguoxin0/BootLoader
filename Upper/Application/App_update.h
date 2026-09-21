@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include "Bootloader.h"
 #include <string.h>
+#include "crc.h"
 
 #define APP_UPDATE_CMD_0 'E'
 #define APP_UPDATE_CMD_1 'A'

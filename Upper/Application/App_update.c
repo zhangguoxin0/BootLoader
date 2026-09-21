@@ -48,6 +48,18 @@ void App_update_wait_cmd(void)
     }
 }
 
+static uint32_t App_crc_cal(uint8_t flash_addr, uint16_t len)
+{
+    uint32_t *p_data = (uint32_t *)data;
+    uint32_t word_count = (len + 3) / 4;
+
+    __HAL_CRC_DR_RESET(&hcrc);
+
+    uint32_t crc_val = HAL_CRC_Calculate(&hcrc, p_data, word_count);
+
+    return crc_val;
+}
+
 /**
  * @brief 向下位机发送更新程序
  *
@@ -89,7 +101,23 @@ void App_update_send_app(void)
     }
     else
     {
+        printf("App_update_send_app_finish\r\n");
+        update_date_len = 0;
         g_app_update_state = APP_UPDATE_WAIT_CMD;
+
+        HAL_Delay(2100);
+        uint32_t crc_value = App_crc_cal(APP_START_ADDR, update_date_total_len);
+        uint8_t crc_value_buf[4];
+        crc_value_buf[0] = crc_value & 0xFF;
+        crc_value_buf[1] = (crc_value >> 8) & 0xFF;
+        crc_value_buf[2] = (crc_value >> 16) & 0xFF;
+        crc_value_buf[3] = (crc_value >> 24) & 0xFF;
+        app_update_CAN_message_tx.StdId = 0x1;
+        app_update_CAN_message_tx.IDE = CAN_ID_STD;
+        app_update_CAN_message_tx.RTR = CAN_RTR_DATA;
+        app_update_CAN_message_tx.DLC = 4;
+        memcpy(app_update_CAN_message_tx.data, crc_value_buf, 4);
+        Dri_CAN_Send(&app_update_CAN_message_tx);
     }
 }
 
